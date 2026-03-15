@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --app-bg: #f9fafb;
+  --app-panel: rgba(255, 255, 255, 0.9);
+  --app-panel-strong: rgba(255, 255, 255, 0.98);
+  --app-border: rgba(148, 163, 184, 0.2);
+  --app-ink: #0f172a;
+  --app-muted: #6b7280;
+  --app-accent: #f97373;
+  --app-accent-soft: rgba(249, 115, 115, 0.12);
+  --app-dark: #020617;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--app-ink);
+  background: var(--app-bg);
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  color: var(--app-ink);
+  background:
+    radial-gradient(circle at 0% 0%, #fef5ed 0%, rgba(254, 245, 237, 0) 40%),
+    radial-gradient(circle at 100% 0%, #e0e7ff 0%, rgba(224, 231, 255, 0) 38%),
+    radial-gradient(circle at 0% 100%, #dcfce7 0%, rgba(220, 252, 231, 0) 40%),
+    linear-gradient(180deg, #f9fafb 0%, #f4f4fb 52%, #f8fafc 100%);
+  background-attachment: fixed;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+#root {
+  position: relative;
+  isolation: isolate;
+}
+
+#root::before,
+#root::after {
+  content: '';
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(70px);
+  opacity: 0.75;
+}
+
+#root::before {
+  right: -6rem;
+  top: 5rem;
+  height: 18rem;
+  width: 18rem;
+  background: radial-gradient(circle at center, rgba(244, 114, 182, 0.18), rgba(244, 114, 182, 0));
+}
+
+#root::after {
+  bottom: -5rem;
+  left: -4rem;
+  height: 16rem;
+  width: 16rem;
+  background: radial-gradient(circle at center, rgba(96, 165, 250, 0.16), rgba(96, 165, 250, 0));
+}
+
+::selection {
+  background: rgba(15, 23, 42, 0.16);
+  color: #0f172a;
+}
+
+@media (max-width: 768px) {
+  body {
+    background:
+      radial-gradient(circle at top, rgba(255, 255, 255, 0.95), transparent 26%),
+      linear-gradient(180deg, #f9fafb 0%, #eef2ff 55%, #fdf2ff 100%);
+  }
+}
