@@ -1,8 +1,9 @@
 import axios from 'axios'
+import { API_BASE_URL } from './apiBase'
 import { getStoredToken } from './auth'
 
 const chatApi = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

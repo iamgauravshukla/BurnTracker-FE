@@ -4,9 +4,10 @@ import { parseDocumentInChat, parseChatInput } from '../services/chat'
 import { formatTaskDeadline } from '../services/tasks'
 
 const starterPrompts = [
-  'Paid 50k to backend developer',
-  'Received 1.2L from consulting project',
-  'Create task for onboarding vendors',
+  'Need to finish vendor onboarding tomorrow',
+  'Paid 50k to backend developer for March sprint',
+  'Client Acme paid 1.2L from consulting work',
+  'Need to pay 20k to designer by Friday',
 ]
 
 const ACCEPTED_FILE_TYPES = '.pdf,.docx,image/png,image/jpeg,image/webp,image/gif'
@@ -148,11 +149,11 @@ export default function ChatInsightsSection({ selectedProject, setExpenses, setI
 
   return (
     <div className="space-y-6">
-      <section className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm lg:p-8">
+      <section className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm lg:p-6">
         <p className="text-xs uppercase tracking-[0.22em] text-slate-400">AI Chat</p>
-        <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-slate-950">Natural language action parser</h2>
+        <h2 className="mt-2 text-[2rem] font-semibold tracking-[-0.035em] text-slate-950 sm:text-[2.15rem]">Natural language action parser</h2>
         <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-500">
-          Type plain English finance or task updates, or attach an invoice / bank statement — the AI will extract expenses and income automatically and save them to the project.
+          Type plain English finance or task updates, or attach an invoice / bank statement — the AI will extract expenses and income automatically, and it now treats generic action messages and planned payments as tasks when money has not moved yet.
         </p>
         {selectedProject ? (
           <p className="mt-3 text-sm text-slate-600">
@@ -164,12 +165,12 @@ export default function ChatInsightsSection({ selectedProject, setExpenses, setI
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[0.72fr_1.28fr]">
-        <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <article className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Example prompts</p>
           <div className="mt-5 space-y-3">
             {starterPrompts.map((prompt) => (
               <button
-                className="w-full rounded-[1.4rem] border border-slate-100 bg-gradient-to-r from-[#f9fafb] to-white px-4 py-4 text-left text-sm text-slate-700 transition hover:border-slate-200 hover:shadow-sm"
+                className="w-full rounded-[1.3rem] border border-[#e8edf7] bg-[linear-gradient(180deg,#f7f9ff_0%,#ffffff_100%)] px-4 py-4 text-left text-sm text-slate-700 transition hover:border-[#dfe8ff]"
                 key={prompt}
                 onClick={() => { setAttachedFile(null); setMessage(prompt) }}
                 type="button"
@@ -185,7 +186,7 @@ export default function ChatInsightsSection({ selectedProject, setExpenses, setI
               Attach an invoice, bank statement, or receipt. The AI will detect all debits (expenses) and credits (income) and log them.
             </p>
             <button
-              className="mt-3 flex w-full items-center justify-center gap-2 rounded-[1.4rem] border border-dashed border-slate-300 bg-[#f9fafb] px-4 py-5 text-sm text-slate-600 transition hover:border-slate-500 hover:bg-white"
+              className="mt-3 flex w-full items-center justify-center gap-2 rounded-[1.3rem] border border-dashed border-[#d7def0] bg-[#f7f9ff] px-4 py-5 text-sm text-slate-600 transition hover:border-[#bec9e6] hover:bg-white"
               disabled={!canExecuteActions}
               onClick={() => fileInputRef.current?.click()}
               type="button"
@@ -203,25 +204,25 @@ export default function ChatInsightsSection({ selectedProject, setExpenses, setI
           </div>
         </article>
 
-        <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <article className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Chat history</p>
               <h3 className="mt-2 text-2xl font-semibold text-slate-950">Parser conversation</h3>
             </div>
-            <span className="rounded-full border border-slate-200 bg-[#fafafa] px-3 py-1 text-xs font-medium text-slate-700">
+            <span className="rounded-full border border-[#e8edf7] bg-[#f7f9ff] px-3 py-1 text-xs font-medium text-slate-700">
               {history.length} messages
             </span>
           </div>
 
-          <div className="mt-6 h-[420px] space-y-4 overflow-y-auto rounded-[1.5rem] border border-slate-100 bg-[#f9fafb] p-4">
+          <div className="mt-6 h-[420px] space-y-4 overflow-y-auto rounded-[1.35rem] border border-[#e8edf7] bg-[#f7f9ff] p-4">
             {history.length ? (
               history.map((entry) => (
                 <div className={entry.role === 'user' ? 'flex justify-end' : 'flex justify-start'} key={entry.id}>
                   <div
                     className={[
                       'max-w-[85%] rounded-[1.4rem] px-4 py-3',
-                      entry.role === 'user' ? 'bg-slate-900 text-white shadow-[0_14px_30px_rgba(15,23,42,0.22)]' : 'border border-slate-100 bg-white text-slate-900 shadow-sm',
+                      entry.role === 'user' ? 'bg-slate-900 text-white shadow-[0_12px_24px_rgba(15,23,42,0.18)]' : 'border border-[#e8edf7] bg-white text-slate-900 shadow-[0_6px_16px_rgba(148,163,184,0.08)]',
                     ].join(' ')}
                   >
                     <p className="text-sm leading-6">{entry.text}</p>
@@ -233,7 +234,7 @@ export default function ChatInsightsSection({ selectedProject, setExpenses, setI
                         {entry.actions.map((action, index) => {
                           const executedRecord = entry.executed?.[index]?.record
                           return (
-                            <div className="rounded-[1rem] border border-slate-100 bg-[#f9fafb] px-3 py-3 text-sm text-slate-700" key={`${entry.id}-${action.type}-${index}`}>
+                            <div className="rounded-[1rem] border border-[#e8edf7] bg-[#f7f9ff] px-3 py-3 text-sm text-slate-700" key={`${entry.id}-${action.type}-${index}`}>
                               <p className="font-medium capitalize text-slate-950">{action.type} action</p>
                               <div className="mt-2 space-y-1">
                                 {formatActionValue(action, executedRecord).map((line) => (
@@ -270,7 +271,7 @@ export default function ChatInsightsSection({ selectedProject, setExpenses, setI
           {error ? <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</div> : null}
 
           {attachedFile ? (
-            <div className="mt-4 flex items-center gap-3 rounded-2xl border border-slate-100 bg-[#f9fafb] px-4 py-3">
+            <div className="mt-4 flex items-center gap-3 rounded-2xl border border-[#e8edf7] bg-[#f7f9ff] px-4 py-3">
               <PaperclipIcon />
               <span className="flex-1 truncate text-sm text-slate-700">{attachedFile.name}</span>
               <button
@@ -285,7 +286,7 @@ export default function ChatInsightsSection({ selectedProject, setExpenses, setI
 
           <form className="mt-4 flex gap-3" onSubmit={handleSubmit}>
             <button
-              className="flex-shrink-0 rounded-2xl border border-slate-200 bg-[#fafafa] p-3.5 text-slate-600 transition hover:border-slate-400 hover:bg-white"
+              className="flex-shrink-0 rounded-2xl border border-[#e8edf7] bg-[#f7f9ff] p-3.5 text-slate-600 transition hover:border-[#bec9e6] hover:bg-white"
               disabled={!canExecuteActions}
               onClick={() => fileInputRef.current?.click()}
               title="Attach document"
@@ -294,7 +295,7 @@ export default function ChatInsightsSection({ selectedProject, setExpenses, setI
               <PaperclipIcon />
             </button>
             <input
-              className="flex-1 rounded-2xl border border-slate-200 bg-[#fafafa] px-4 py-3.5 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-900 focus:bg-white focus:ring-4 focus:ring-slate-200 disabled:opacity-50"
+              className="flex-1 rounded-2xl border border-[#e8edf7] bg-[#f7f9ff] px-4 py-3.5 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#d9def0] focus:bg-white focus:ring-4 focus:ring-[#eef2ff] disabled:opacity-50"
               disabled={Boolean(attachedFile)}
               onChange={(event) => setMessage(event.target.value)}
               placeholder={attachedFile ? 'File attached — click Send to parse' : 'Type a natural language action…'}

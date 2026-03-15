@@ -51,7 +51,7 @@ export default function RegisterPage() {
             className="w-full rounded-2xl border border-slate-200 bg-[#fafafa] px-4 py-3.5 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-900 focus:bg-white focus:ring-4 focus:ring-slate-200"
             name="email"
             onChange={handleChange}
-            placeholder="founder@startuptracker.app"
+            placeholder="founder@burntracker.app"
             required
             type="email"
             value={formData.email}

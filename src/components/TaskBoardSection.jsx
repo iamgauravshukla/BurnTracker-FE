@@ -22,10 +22,10 @@ const initialFormData = {
 }
 
 const boardColumns = [
-  { id: 'high', title: taskPriorityLabels.high, eyebrow: 'Priority lane', emptyMessage: 'Drop a high-priority task here.' },
-  { id: 'medium', title: taskPriorityLabels.medium, eyebrow: 'Priority lane', emptyMessage: 'Drop a medium-priority task here.' },
-  { id: 'low', title: taskPriorityLabels.low, eyebrow: 'Priority lane', emptyMessage: 'Drop a low-priority task here.' },
-  { id: 'done', title: 'Done', eyebrow: 'Completion lane', emptyMessage: 'Completed tasks will appear here.' },
+  { id: 'high', title: taskPriorityLabels.high, eyebrow: 'Priority lane', emptyMessage: 'Drop a high-priority task here.', surface: 'border-[#ffe3d8] bg-[linear-gradient(180deg,#fff1ea_0%,#fffaf7_100%)]', chip: 'border-[#ffd2c2] bg-[#fff4ee] text-[#b85b37]' },
+  { id: 'medium', title: taskPriorityLabels.medium, eyebrow: 'Priority lane', emptyMessage: 'Drop a medium-priority task here.', surface: 'border-[#dfe8ff] bg-[linear-gradient(180deg,#edf4ff_0%,#f9fbff_100%)]', chip: 'border-[#d4e0ff] bg-[#f2f6ff] text-[#4f67b5]' },
+  { id: 'low', title: taskPriorityLabels.low, eyebrow: 'Priority lane', emptyMessage: 'Drop a low-priority task here.', surface: 'border-[#e8ddff] bg-[linear-gradient(180deg,#f4efff_0%,#fbf9ff_100%)]', chip: 'border-[#e0d1ff] bg-[#f7f2ff] text-[#7653b8]' },
+  { id: 'done', title: 'Done', eyebrow: 'Completion lane', emptyMessage: 'Completed tasks will appear here.', surface: 'border-[#dff4eb] bg-[linear-gradient(180deg,#effbf5_0%,#fbfefc_100%)]', chip: 'border-[#cfeede] bg-[#f1fbf6] text-[#2f8663]' },
 ]
 
 function CheckIcon({ className = 'h-4 w-4' }) {
@@ -55,7 +55,7 @@ function TaskCard({ canManageTasks = true, isUpdating, onMarkDone, overlay = fal
   return (
     <article
       className={[
-        'rounded-[1.5rem] border border-slate-100 bg-white/95 p-4 shadow-[0_16px_35px_rgba(148,163,184,0.14)] backdrop-blur-sm',
+        'rounded-[1.35rem] border border-[#edf0f6] bg-white/95 p-4 shadow-[0_10px_22px_rgba(148,163,184,0.10)] backdrop-blur-sm',
         overlay ? 'rotate-1 shadow-xl' : isCompleted || !canManageTasks ? '' : 'cursor-grab active:cursor-grabbing',
       ].join(' ')}
       ref={overlay ? undefined : setNodeRef}
@@ -78,13 +78,13 @@ function TaskCard({ canManageTasks = true, isUpdating, onMarkDone, overlay = fal
       <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-500">{task.description}</p>
       {actorName ? (
         <div className="mt-3">
-          <span className="inline-flex rounded-full border border-slate-200 bg-[#f9fafb] px-3 py-1 text-[11px] font-medium text-slate-600">
+          <span className="inline-flex rounded-full border border-[#e8edf7] bg-[#f7f9ff] px-3 py-1 text-[11px] font-medium text-slate-600">
             {isCompleted ? 'Completed from work by' : 'Assigned by'} {actorName}
           </span>
         </div>
       ) : null}
       <div className="mt-4 flex items-center justify-between gap-3">
-        <span className="rounded-full border border-slate-100 bg-[#f9fafb] px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-slate-600">
+        <span className="rounded-full border border-[#e8edf7] bg-[#f7f9ff] px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-slate-600">
           {isCompleted ? 'Completed' : taskPriorityLabels[task.priority]}
         </span>
         <span className="text-right text-xs font-medium text-slate-400">{formatTaskDeadline(task.deadline)}</span>
@@ -116,8 +116,9 @@ function TaskColumn({ canManageTasks, column, isUpdatingTaskId, tasks, onMarkDon
   return (
     <section
       className={[
-        'rounded-[1.9rem] border bg-white/90 p-5 shadow-[0_18px_40px_rgba(148,163,184,0.16)] transition backdrop-blur-sm',
-        isOver ? 'border-slate-400 ring-4 ring-slate-100' : 'border-slate-100',
+        'rounded-[1.7rem] border p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] transition backdrop-blur-sm',
+        column.surface,
+        isOver ? 'ring-4 ring-white/80' : '',
       ].join(' ')}
       ref={setNodeRef}
     >
@@ -126,7 +127,7 @@ function TaskColumn({ canManageTasks, column, isUpdatingTaskId, tasks, onMarkDon
           <p className="text-xs uppercase tracking-[0.22em] text-slate-400">{column.eyebrow}</p>
           <h3 className="mt-2 text-2xl font-semibold text-slate-950">{column.title}</h3>
         </div>
-        <span className="rounded-full border border-slate-100 bg-[#f9fafb] px-3 py-1 text-xs font-medium text-slate-700">
+        <span className={['rounded-full border px-3 py-1 text-xs font-medium', column.chip].join(' ')}>
           {tasks.length}
         </span>
       </div>
@@ -143,7 +144,7 @@ function TaskColumn({ canManageTasks, column, isUpdatingTaskId, tasks, onMarkDon
             />
           ))
         ) : (
-          <div className="rounded-[1.4rem] border border-dashed border-slate-200 bg-[#f9fafb] px-4 py-10 text-center text-sm text-slate-500">
+          <div className="rounded-[1.3rem] border border-dashed border-white/80 bg-white/70 px-4 py-10 text-center text-sm text-slate-500">
             {column.emptyMessage}
           </div>
         )}
@@ -159,11 +160,11 @@ function CreateTaskModal({ formData, isOpen, isSubmitting, onChange, onClose, on
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/18 px-4 py-6 backdrop-blur-sm">
-      <div className="w-full max-w-xl rounded-[2rem] border border-slate-100 bg-white/95 p-6 shadow-[0_28px_80px_rgba(148,163,184,0.35)]">
+      <div className="w-full max-w-xl rounded-[1.7rem] border border-[#edf0f6] bg-white/98 p-5 shadow-[0_18px_40px_rgba(148,163,184,0.16)]">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Create task</p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-[-0.03em] text-slate-950">New board task</h2>
+            <h2 className="mt-2 text-[1.7rem] font-semibold tracking-[-0.03em] text-slate-950">New board task</h2>
           </div>
           <button
             className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-slate-600 transition hover:bg-slate-50"
@@ -369,9 +370,9 @@ export default function TaskBoardSection({ isLoadingData, onSelectProject, proje
   if (!selectedProject) {
     return (
       <div className="space-y-6">
-        <section className="rounded-[2rem] border border-slate-100 bg-white/90 p-8 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <section className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Tasks</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-slate-950">Select a startup first</h2>
+          <h2 className="mt-2 text-[2rem] font-semibold tracking-[-0.035em] text-slate-950 sm:text-[2.15rem]">Select a startup first</h2>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-500">
             The Kanban board is scoped per startup so delivery priorities stay tied to the right company and roadmap.
           </p>
@@ -381,7 +382,7 @@ export default function TaskBoardSection({ isLoadingData, onSelectProject, proje
           {projects.length ? (
             projects.map((project) => (
               <button
-                className="rounded-[1.8rem] border border-slate-100 bg-white/90 p-6 text-left shadow-[0_16px_35px_rgba(148,163,184,0.16)] transition hover:border-slate-200 hover:bg-white"
+                className="rounded-[1.5rem] border border-[#e8edf7] bg-[linear-gradient(180deg,#f7f9ff_0%,#ffffff_100%)] p-6 text-left shadow-[0_10px_24px_rgba(148,163,184,0.10)] transition hover:border-[#dfe8ff] hover:bg-white"
                 key={project.id}
                 onClick={() => onSelectProject(project.id)}
                 type="button"
@@ -403,10 +404,10 @@ export default function TaskBoardSection({ isLoadingData, onSelectProject, proje
 
   return (
     <div className="space-y-6">
-      <section className="flex flex-col gap-5 rounded-[2rem] border border-slate-100 bg-gradient-to-r from-[#eef2ff] via-white to-[#fef3c7] p-6 shadow-[0_20px_50px_rgba(148,163,184,0.2)] lg:flex-row lg:items-end lg:justify-between">
+      <section className="flex flex-col gap-4 rounded-[1.8rem] border border-slate-100 bg-gradient-to-r from-[#eef2ff] via-white to-[#fef3c7] p-5 shadow-[0_20px_50px_rgba(148,163,184,0.2)] lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Kanban board</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-slate-950">{selectedProject.name} execution board</h2>
+          <h2 className="mt-2 text-[2rem] font-semibold tracking-[-0.035em] text-slate-950 sm:text-[2.15rem]">{selectedProject.name} execution board</h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-500">
             {canManageTasks
               ? 'Organize work by priority. Drag task cards across columns to update urgency instantly for the selected startup.'
@@ -415,7 +416,7 @@ export default function TaskBoardSection({ isLoadingData, onSelectProject, proje
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="rounded-[1.4rem] border border-white/80 bg-white/80 px-4 py-3 text-sm text-slate-600 shadow-sm">
+            <div className="rounded-[1.3rem] border border-[#e8edf7] bg-white/90 px-4 py-3 text-sm text-slate-600">
             {openTasks.length} open tasks{completedTaskCount ? ` · ${completedTaskCount} done` : ''}
           </div>
           {canManageTasks ? (

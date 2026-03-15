@@ -21,12 +21,26 @@ export const CURRENCIES = [
   { code: 'VND', name: 'Vietnamese Dong', symbol: '₫' },
 ]
 
-const STORAGE_KEY = 'startupTrackerCurrency'
+const STORAGE_KEY = 'burnTrackerCurrency'
+const LEGACY_STORAGE_KEY = 'startupTrackerCurrency'
 
 export function getStoredCurrency() {
-  return localStorage.getItem(STORAGE_KEY) || 'USD'
+  const currentCurrency = localStorage.getItem(STORAGE_KEY)
+
+  if (currentCurrency) {
+    return currentCurrency
+  }
+
+  const legacyCurrency = localStorage.getItem(LEGACY_STORAGE_KEY)
+  if (legacyCurrency) {
+    localStorage.setItem(STORAGE_KEY, legacyCurrency)
+    localStorage.removeItem(LEGACY_STORAGE_KEY)
+  }
+
+  return legacyCurrency || 'USD'
 }
 
 export function setStoredCurrency(code) {
   localStorage.setItem(STORAGE_KEY, code)
+  localStorage.removeItem(LEGACY_STORAGE_KEY)
 }

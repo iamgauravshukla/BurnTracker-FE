@@ -7,7 +7,7 @@ import { deleteProject } from '../services/projects'
 function SettingsSurface({ children, className = '' }) {
   return (
     <section className={[
-      'rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm lg:p-8',
+      'rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm lg:p-6',
       className,
     ].join(' ')}>
       {children}
@@ -17,9 +17,9 @@ function SettingsSurface({ children, className = '' }) {
 
 function SettingsMetric({ hint, label, value }) {
   return (
-    <article className="rounded-[1.5rem] border border-slate-100 bg-gradient-to-br from-white via-[#f9fafb] to-[#eef2ff] p-5 shadow-sm">
+    <article className="rounded-[1.35rem] border border-[#dfe8ff] bg-[linear-gradient(180deg,#edf4ff_0%,#f9fbff_100%)] p-5 shadow-[0_8px_18px_rgba(148,163,184,0.08)]">
       <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{label}</p>
-      <p className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">{value}</p>
+      <p className="mt-2 text-[1.7rem] font-semibold tracking-tight text-slate-950">{value}</p>
       <p className="mt-2 text-sm leading-6 text-slate-500">{hint}</p>
     </article>
   )
@@ -114,7 +114,7 @@ export default function SettingsSection({ projects = [], setProjects }) {
     <div className="space-y-6">
       <SettingsSurface>
         <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Settings</p>
-        <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-slate-950">Workspace settings</h2>
+        <h2 className="mt-2 text-[2rem] font-semibold tracking-[-0.035em] text-slate-950 sm:text-[2.15rem]">Workspace settings</h2>
         <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-500">
           Manage your display currency and account security from here. Changes take effect immediately.
         </p>
@@ -153,14 +153,14 @@ export default function SettingsSection({ projects = [], setProjects }) {
                 </label>
 
                 <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-slate-100 bg-gradient-to-r from-[#eef2ff] via-white to-[#fef3c7] px-4 py-4 shadow-sm">
+                  <div className="rounded-2xl border border-[#e8edf7] bg-[linear-gradient(90deg,#f3f6ff_0%,#fff8ef_100%)] px-4 py-4">
                     <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Active format</p>
                     <p className="mt-2 text-2xl font-semibold text-slate-950">
                       {new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 0 }).format(12500)}
                     </p>
                     <p className="mt-1 text-sm text-slate-500">Applied instantly across the workspace</p>
                   </div>
-                  <div className="rounded-2xl border border-slate-100 bg-[#f9fafb] px-4 py-4 shadow-sm">
+                  <div className="rounded-2xl border border-[#e8edf7] bg-[#f7f9ff] px-4 py-4">
                     <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Selection</p>
                     <p className="mt-2 text-lg font-semibold text-slate-950">{selectedCurrencyInfo.name}</p>
                     <p className="mt-1 text-sm text-slate-500">{selectedCurrencyInfo.symbol} · {currency}</p>
@@ -253,7 +253,7 @@ export default function SettingsSection({ projects = [], setProjects }) {
             {projects.length ? (
               <div className="mt-6 space-y-3">
                 {projects.map((project) => (
-                  <div className="flex items-center justify-between gap-4 rounded-[1.5rem] border border-slate-100 bg-[#f9fafb] px-4 py-4 shadow-sm" key={project.id}>
+                  <div className="flex items-center justify-between gap-4 rounded-[1.35rem] border border-[#e8edf7] bg-[#f7f9ff] px-4 py-4" key={project.id}>
                     <div className="min-w-0">
                       <p className="truncate text-sm font-medium text-slate-950">{project.name}</p>
                       {project.description ? (
@@ -271,7 +271,7 @@ export default function SettingsSection({ projects = [], setProjects }) {
                 ))}
               </div>
             ) : (
-              <div className="mt-6 rounded-[1.5rem] border border-dashed border-slate-200 bg-[#f9fafb] px-4 py-8 text-sm text-slate-500">
+              <div className="mt-6 rounded-[1.35rem] border border-dashed border-[#dfe8ff] bg-[#f7f9ff] px-4 py-8 text-sm text-slate-500">
                 No projects yet.
               </div>
             )}
@@ -282,7 +282,7 @@ export default function SettingsSection({ projects = [], setProjects }) {
       {/* Delete confirmation modal */}
       {deleteTarget ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/18 px-4 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-[2rem] border border-slate-100 bg-white/95 p-8 shadow-[0_28px_80px_rgba(148,163,184,0.35)]">
+          <div className="w-full max-w-md rounded-[1.7rem] border border-[#edf0f6] bg-white/98 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.16)]">
             <p className="text-xs uppercase tracking-[0.22em] text-rose-500">Permanent action</p>
             <h3 className="mt-3 text-2xl font-semibold text-slate-950">Delete &ldquo;{deleteTarget.name}&rdquo;?</h3>
             <p className="mt-3 text-sm leading-7 text-slate-500">

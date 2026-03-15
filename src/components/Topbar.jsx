@@ -47,11 +47,15 @@ export default function Topbar({ activeItem, canManageTasks = true, isMarkingTas
   }, [])
 
   return (
-    <header className="sticky top-0 z-20 px-4 pt-4 sm:px-6 lg:px-8 lg:pt-6">
-      <div className="flex w-full min-w-0 items-center justify-between gap-4 rounded-3xl border border-slate-100 bg-white/90 px-4 py-3 shadow-[0_18px_40px_rgba(148,163,184,0.22)] backdrop-blur-xl sm:px-6">
-        <div className="flex min-w-0 flex-1 items-center gap-4">
-          <div className="hidden rounded-2xl border border-slate-100 bg-[#f9fafb] px-3 py-2 text-xs font-medium text-slate-500 sm:inline-flex sm:items-center sm:gap-2">
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-[10px] font-semibold text-emerald-700">
+    <header className="sticky top-0 z-20 isolate relative px-3 pt-3 sm:px-5 lg:px-6 lg:pt-4">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-full rounded-b-[2rem] bg-[linear-gradient(180deg,rgba(244,246,255,0.98)_0%,rgba(248,250,255,0.92)_45%,rgba(249,250,251,0)_100%)] backdrop-blur-xl"
+      />
+      <div className="flex w-full min-w-0 flex-col gap-3 rounded-[1.6rem] border border-[#eceff5] bg-white/92 px-3 py-2.5 shadow-[0_10px_30px_rgba(148,163,184,0.12)] backdrop-blur-xl sm:px-5 md:flex-row md:items-center md:justify-between">
+        <div className="flex min-w-0 w-full flex-1 items-center gap-3 md:w-auto md:gap-4">
+          <div className="hidden rounded-2xl border border-[#edf0f6] bg-[#fbfcff] px-3 py-2 text-xs font-medium text-slate-500 sm:inline-flex sm:items-center sm:gap-2">
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#dff7e8] text-[10px] font-semibold text-emerald-700">
               •
             </span>
             <span>Overview</span>
@@ -61,7 +65,7 @@ export default function Topbar({ activeItem, canManageTasks = true, isMarkingTas
 
           <div className="relative min-w-0 flex-1">
             <input
-              className="h-10 w-full rounded-2xl border border-slate-100 bg-[#f9fafb] pl-9 pr-3 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-slate-400 focus:bg-white focus:ring-4 focus:ring-slate-100"
+              className="h-9 w-full rounded-2xl border border-[#edf0f6] bg-[#fbfcff] pl-9 pr-3 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-[#d9def0] focus:bg-white focus:ring-4 focus:ring-[#eef2ff]"
               placeholder="Search in workspace"
               type="search"
             />
@@ -74,15 +78,15 @@ export default function Topbar({ activeItem, canManageTasks = true, isMarkingTas
           </div>
         </div>
 
-        <div className="flex shrink-0 items-center justify-end gap-3">
-          <div className="hidden rounded-[1.4rem] border border-slate-100 bg-gradient-to-r from-[#eef2ff] via-white to-[#fef3c7] px-4 py-3 shadow-sm md:block">
+        <div className="flex w-full shrink-0 items-center justify-between gap-2 md:w-auto md:justify-end md:gap-3">
+          <div className="hidden rounded-[1.25rem] border border-[#eceff5] bg-[linear-gradient(90deg,#f3f6ff_0%,#fff8ef_100%)] px-4 py-2.5 md:block">
             <p className="text-[11px] uppercase tracking-[0.2em] text-slate-400">Workspace pulse</p>
             <p className="mt-1 text-sm font-medium text-slate-900">{notifications.length ? `${notifications.length} deadlines need attention` : 'Everything is on track'}</p>
           </div>
 
           <div className="relative" ref={panelRef}>
             <button
-              className="relative flex items-center justify-center rounded-[1.35rem] border border-slate-100 bg-white/90 p-3 text-slate-600 shadow-sm transition hover:bg-slate-50"
+              className="relative flex items-center justify-center rounded-[1.05rem] border border-[#eceff5] bg-white p-2.5 text-slate-600 transition hover:bg-slate-50"
               onClick={() => setIsNotificationsOpen((current) => !current)}
               type="button"
             >
@@ -95,7 +99,7 @@ export default function Topbar({ activeItem, canManageTasks = true, isMarkingTas
             </button>
 
             {isNotificationsOpen ? (
-              <div className="absolute right-0 top-full z-30 mt-3 w-[22rem] rounded-[1.8rem] border border-slate-100 bg-white p-4 shadow-[0_24px_60px_rgba(148,163,184,0.35)] sm:w-[25rem]">
+              <div className="absolute right-0 top-full z-30 mt-3 w-[min(22rem,calc(100vw-1.5rem))] rounded-[1.4rem] border border-slate-100 bg-white p-4 shadow-[0_24px_60px_rgba(148,163,184,0.35)] sm:w-[25rem] sm:rounded-[1.8rem]">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Notifications</p>
@@ -162,7 +166,7 @@ export default function Topbar({ activeItem, canManageTasks = true, isMarkingTas
           </div>
 
           <button
-            className="rounded-[1.35rem] bg-slate-900 px-5 py-3 text-sm font-medium text-white shadow-[0_14px_30px_rgba(15,23,42,0.26)] transition hover:bg-slate-800"
+            className="rounded-[1.05rem] bg-slate-900 px-3.5 py-2.5 text-sm font-medium text-white shadow-[0_12px_24px_rgba(15,23,42,0.18)] transition hover:bg-slate-800 md:px-4"
             onClick={onLogout}
             type="button"
           >

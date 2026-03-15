@@ -60,7 +60,7 @@ function ActionButton({ children, onClick, tone = 'secondary' }) {
   const styles =
     tone === 'primary'
       ? 'bg-slate-950 text-white hover:bg-slate-800 shadow-[0_12px_24px_rgba(15,23,42,0.18)]'
-      : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+      : 'border border-[#e8edf7] bg-[#f8faff] text-slate-700 hover:bg-white'
 
   return (
     <button
@@ -176,7 +176,7 @@ function ShareProjectModal({ onClose, onProjectUpdated, project }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-900/18 px-4 py-10 backdrop-blur-sm">
-      <div className="w-full max-w-2xl rounded-[2rem] border border-slate-100 bg-white/95 p-8 shadow-[0_28px_80px_rgba(148,163,184,0.35)]">
+      <div className="w-full max-w-2xl rounded-[1.7rem] border border-[#edf0f6] bg-white/98 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.16)]">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Project sharing</p>
@@ -195,7 +195,7 @@ function ShareProjectModal({ onClose, onProjectUpdated, project }) {
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <section className="rounded-[1.6rem] border border-slate-100 bg-[#fafafa] p-5">
+          <section className="rounded-[1.45rem] border border-[#e8edf7] bg-[linear-gradient(180deg,#f7f9ff_0%,#ffffff_100%)] p-5">
             <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Search active users</p>
             <input
               className="mt-4 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-900 focus:ring-4 focus:ring-slate-200"
@@ -240,7 +240,7 @@ function ShareProjectModal({ onClose, onProjectUpdated, project }) {
             </div>
           </section>
 
-          <section className="rounded-[1.6rem] border border-slate-100 bg-white p-5 shadow-[0_12px_30px_rgba(148,163,184,0.12)]">
+          <section className="rounded-[1.45rem] border border-[#edf0f6] bg-white p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)]">
             <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Current access</p>
             <div className="mt-4 rounded-[1.3rem] border border-slate-100 bg-[#fafafa] px-4 py-4">
               <p className="text-sm font-semibold text-slate-950">Owner</p>
@@ -332,7 +332,7 @@ function EditProjectModal({ onClose, onSave, project }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-900/18 px-4 py-10 backdrop-blur-sm">
-      <div className="w-full max-w-lg rounded-[2rem] border border-slate-100 bg-white/95 p-8 shadow-[0_28px_80px_rgba(148,163,184,0.35)]">
+      <div className="w-full max-w-lg rounded-[1.7rem] border border-[#edf0f6] bg-white/98 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.16)]">
         <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Edit project</p>
         <h3 className="mt-3 text-2xl font-semibold text-slate-950">Update startup info</h3>
 
@@ -494,10 +494,10 @@ export default function ProjectManagementSection({ onOpenProject, projects, setP
         />
       ) : null}
       <section className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
-        <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <article className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Create startup project</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-slate-950">Add a new startup</h2>
+            <h2 className="mt-2 text-[1.7rem] font-semibold tracking-[-0.03em] text-slate-950">Add a new startup</h2>
             <p className="mt-3 text-sm leading-7 text-slate-500">
               Track investment, current balance, and runway from one clean project management view.
             </p>
@@ -584,14 +584,14 @@ export default function ProjectManagementSection({ onOpenProject, projects, setP
           </form>
         </article>
 
-        <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <article className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Project list</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-slate-950">Startups</h2>
+              <h2 className="mt-2 text-[1.7rem] font-semibold tracking-[-0.03em] text-slate-950">Startups</h2>
               <p className="mt-2 text-sm text-slate-500">Open each company workspace, update funding context, or manage who can collaborate.</p>
             </div>
-            <span className="rounded-full border border-slate-200 bg-[#fafafa] px-3 py-1 text-xs font-medium text-slate-700">
+            <span className="rounded-full border border-[#e8edf7] bg-[#f7f9ff] px-3 py-1 text-xs font-medium text-slate-700">
               {projectCards.length} total
             </span>
           </div>
@@ -600,7 +600,7 @@ export default function ProjectManagementSection({ onOpenProject, projects, setP
             {projectCards.length ? (
               projectCards.map((project) => (
                 <article
-                  className="rounded-[1.7rem] border border-slate-100 bg-gradient-to-br from-white via-[#f9fafb] to-[#eef2ff] p-5 text-left transition hover:border-slate-200 hover:shadow-[0_16px_35px_rgba(148,163,184,0.18)]"
+                  className="rounded-[1.5rem] border border-[#e8edf7] bg-[linear-gradient(180deg,#f7f9ff_0%,#ffffff_100%)] p-5 text-left transition hover:border-[#dfe8ff] hover:shadow-[0_10px_24px_rgba(148,163,184,0.10)]"
                   key={project.id}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -625,7 +625,7 @@ export default function ProjectManagementSection({ onOpenProject, projects, setP
                       </div>
                       <h3 className="mt-2 truncate text-xl font-semibold text-slate-950">{project.name}</h3>
                     </div>
-                    <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500">
+                    <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-[#e8edf7] bg-white px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500">
                       <TeamIcon />
                       {project.memberCount || 1} members
                     </span>
@@ -665,7 +665,7 @@ export default function ProjectManagementSection({ onOpenProject, projects, setP
                     </div>
                   </div>
 
-                  <div className="mt-5 flex flex-wrap gap-2 border-t border-slate-200/70 pt-4">
+                  <div className="mt-5 flex flex-wrap gap-2 border-t border-[#e8edf7] pt-4">
                     <ActionButton onClick={() => onOpenProject(project.id)} tone="primary">
                       <OpenIcon />
                       

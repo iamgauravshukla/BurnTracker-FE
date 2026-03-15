@@ -17,7 +17,7 @@ export default function DashboardLayout({ activeItem = 'Dashboard', canManageTas
   }
 
   return (
-    <div className="min-h-screen text-slate-900">
+    <div className="min-h-screen overflow-x-hidden bg-[#f4f6fb] text-slate-900">
       <Sidebar
         activeItem={activeItem}
         isCollapsed={isCollapsed}

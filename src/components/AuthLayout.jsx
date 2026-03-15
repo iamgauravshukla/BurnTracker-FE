@@ -17,9 +17,9 @@ export default function AuthLayout({ title, subtitle, footerText, footerLink, fo
               <div>
                 <div className="inline-flex items-center gap-3 rounded-full border border-white/60 bg-white/70 px-4 py-2 text-sm text-slate-700 shadow-sm">
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(135deg,#e0f2fe_0%,#f5d0fe_45%,#fee2e2_100%)] text-[11px] font-semibold text-slate-900">
-                    SX
+                    BT
                   </span>
-                  StartupTracker
+                  BurnTracker
                 </div>
                 <h1 className="mt-10 max-w-md text-5xl font-semibold tracking-[-0.05em] text-slate-900">Run the company from one intentional dashboard.</h1>
                 <p className="mt-5 max-w-md text-base leading-8 text-slate-600">
@@ -53,9 +53,9 @@ export default function AuthLayout({ title, subtitle, footerText, footerLink, fo
               <div className="mb-8 text-center lg:hidden">
                 <div className="mx-auto inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm">
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-[11px] font-semibold text-white">
-                    SX
+                    BT
                   </span>
-                  StartupTracker
+                  BurnTracker
                 </div>
               </div>
 

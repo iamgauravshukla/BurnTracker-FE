@@ -69,11 +69,21 @@ const doughnutOptions = {
   },
 }
 
-function WidgetCard({ hint, label, value }) {
+function WidgetCard({ hint, label, tone, value }) {
+  const toneClasses = {
+    blue: 'border-[#dfe8ff] bg-[linear-gradient(180deg,#edf4ff_0%,#f9fbff_100%)]',
+    peach: 'border-[#ffe6da] bg-[linear-gradient(180deg,#fff2eb_0%,#fffaf7_100%)]',
+    lilac: 'border-[#ece1ff] bg-[linear-gradient(180deg,#f4efff_0%,#fbf9ff_100%)]',
+    mint: 'border-[#dff4eb] bg-[linear-gradient(180deg,#ecfaf4_0%,#fbfefc_100%)]',
+  }
+
   return (
-    <article className="rounded-[1.75rem] border border-slate-100 bg-gradient-to-br from-white via-[#f9fafb] to-[#eef2ff] p-5 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+    <article className={[
+      'rounded-[1.5rem] border p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm',
+      toneClasses[tone] || toneClasses.blue,
+    ].join(' ')}>
       <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{label}</p>
-      <p className="mt-4 text-3xl font-semibold tracking-tight text-slate-950">{value}</p>
+      <p className="mt-3 text-[1.7rem] font-semibold tracking-tight text-slate-950">{value}</p>
       <p className="mt-2 text-sm leading-6 text-slate-500">{hint}</p>
     </article>
   )
@@ -81,7 +91,7 @@ function WidgetCard({ hint, label, value }) {
 
 function BudgetMetricCard({ hint, label, value }) {
   return (
-    <div className="rounded-[1.5rem] border border-slate-100 bg-gradient-to-br from-white via-[#fef3c7] to-[#fffbeb] p-4">
+    <div className="rounded-[1.35rem] border border-[#ffe7dc] bg-[linear-gradient(180deg,#fff4ee_0%,#fffaf7_100%)] p-4">
       <p className="text-xs uppercase tracking-[0.18em] text-slate-400">{label}</p>
       <p className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">{value}</p>
       <p className="mt-2 text-sm text-slate-500">{hint}</p>
@@ -97,7 +107,7 @@ function SignalCard({ detail, label, status, summary }) {
   }
 
   return (
-    <article className="rounded-[1.75rem] border border-slate-100 bg-white/90 p-5 shadow-[0_16px_35px_rgba(148,163,184,0.16)] backdrop-blur-sm">
+    <article className="rounded-[1.55rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
       <div className="flex items-center justify-between gap-3">
         <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Signal</p>
         <span className={[
@@ -116,7 +126,7 @@ function SignalCard({ detail, label, status, summary }) {
 
 function SnapshotCard({ snapshots }) {
   return (
-    <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+    <article className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Monthly view</p>
@@ -145,7 +155,7 @@ function SnapshotCard({ snapshots }) {
 
 function VendorRecoveryCard({ items }) {
   return (
-    <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+    <article className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
       <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Cost breakdown</p>
       <h3 className="mt-2 text-2xl font-semibold text-slate-950">Vendor recovery pressure</h3>
       <div className="mt-6 space-y-3">
@@ -171,7 +181,7 @@ function VendorRecoveryCard({ items }) {
 
 function ActivityCard({ emptyMessage, items, title, type }) {
   return (
-    <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+    <article className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
       <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Card</p>
       <h3 className="mt-2 text-2xl font-semibold text-slate-950">{title}</h3>
       <div className="mt-6 space-y-4">
@@ -217,9 +227,9 @@ export default function FounderDashboardSection({ expenses, incomeEntries, proje
 
   if (!projects.length) {
     return (
-      <section className="rounded-[2rem] border border-slate-100 bg-white/90 p-8 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+      <section className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
         <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Founder dashboard</p>
-        <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-slate-950">No project data yet.</h2>
+        <h2 className="mt-2 text-[2rem] font-semibold tracking-[-0.035em] text-slate-950 sm:text-[2.15rem]">No project data yet.</h2>
         <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-500">
           Create your first project to unlock portfolio metrics, recent activity, runway tracking, and execution visibility.
         </p>
@@ -269,34 +279,34 @@ export default function FounderDashboardSection({ expenses, incomeEntries, proje
 
   return (
     <div className="space-y-6">
-      <section className="overflow-hidden rounded-[2.3rem] border border-slate-100 bg-gradient-to-r from-[#eef2ff] via-white to-[#fef3c7] p-6 text-slate-900 shadow-[0_24px_70px_rgba(148,163,184,0.28)] lg:p-8">
+      <section className="overflow-hidden rounded-[1.8rem] border border-[#e8edf7] bg-[linear-gradient(135deg,#f5f8ff_0%,#fffdf8_48%,#fbf6ff_100%)] p-5 text-slate-900 shadow-[0_14px_32px_rgba(148,163,184,0.12)] lg:p-6">
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
-          <div className="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-[#e0f2fe]/50 blur-3xl" />
-          <div className="absolute bottom-[-4rem] left-24 h-40 w-40 rounded-full bg-[#fee2e2]/60 blur-3xl" />
+          <div className="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-[#e8ecff]/85 blur-3xl" />
+          <div className="absolute bottom-[-4rem] left-24 h-40 w-40 rounded-full bg-[#ffe9df]/80 blur-3xl" />
           <div className="relative max-w-3xl">
             <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Founder dashboard</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-slate-900 sm:text-[3rem]">
+            <h2 className="mt-2 text-[2rem] font-semibold tracking-[-0.04em] text-slate-900 sm:text-[2.4rem]">
               {selectedProject ? `${dashboard.focus.name} financial cockpit.` : "Portfolio financial cockpit."}
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600">{dashboard.focus.description}</p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-[1.45rem] border border-white/70 bg-white/90 px-4 py-4 shadow-sm backdrop-blur-sm">
+              <div className="rounded-[1.2rem] border border-[#dfe8ff] bg-[#edf4ff] px-4 py-3 backdrop-blur-sm">
                 <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Right track</p>
                 <p className="mt-3 text-2xl font-semibold text-slate-900">{dashboard.healthSummary.rightTrackScore}%</p>
               </div>
-              <div className="rounded-[1.45rem] border border-white/70 bg-white/90 px-4 py-4 shadow-sm backdrop-blur-sm">
+              <div className="rounded-[1.2rem] border border-[#ffe7dc] bg-[#fff3ec] px-4 py-3 backdrop-blur-sm">
                 <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Refill rate</p>
                 <p className="mt-3 text-2xl font-semibold text-slate-900">{dashboard.healthSummary.refillRate}%</p>
               </div>
-              <div className="rounded-[1.45rem] border border-white/70 bg-white/90 px-4 py-4 shadow-sm backdrop-blur-sm">
+              <div className="rounded-[1.2rem] border border-[#ece2ff] bg-[#f4efff] px-4 py-3 backdrop-blur-sm">
                 <p className="text-xs uppercase tracking-[0.18em] text-slate-400">On-time rate</p>
                 <p className="mt-3 text-2xl font-semibold text-slate-900">{dashboard.healthSummary.onTimeRate}%</p>
               </div>
             </div>
           </div>
 
-          <div className="relative rounded-[1.65rem] border border-white/70 bg-white/90 px-5 py-5 shadow-sm backdrop-blur-sm lg:min-w-[18rem]">
+          <div className="relative rounded-[1.45rem] border border-[#edf0f6] bg-white/92 px-5 py-5 backdrop-blur-sm lg:min-w-[18rem]">
             <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Current focus</p>
             <p className="mt-2 text-lg font-semibold text-slate-900">{dashboard.focus.name}</p>
             <p className="mt-4 text-sm leading-6 text-slate-600">
@@ -307,8 +317,14 @@ export default function FounderDashboardSection({ expenses, incomeEntries, proje
       </section>
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4">
-        {dashboard.widgets.map((widget) => (
-          <WidgetCard hint={widget.hint} key={widget.label} label={widget.label} value={widget.value} />
+        {dashboard.widgets.map((widget, index) => (
+          <WidgetCard
+            hint={widget.hint}
+            key={widget.label}
+            label={widget.label}
+            tone={['blue', 'peach', 'lilac', 'mint'][index % 4]}
+            value={widget.value}
+          />
         ))}
       </section>
 
@@ -333,7 +349,7 @@ export default function FounderDashboardSection({ expenses, incomeEntries, proje
         />
       </section>
 
-      <section className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+      <section className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Budget report</p>
@@ -376,7 +392,7 @@ export default function FounderDashboardSection({ expenses, incomeEntries, proje
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-        <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <article className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Charts</p>
@@ -395,7 +411,7 @@ export default function FounderDashboardSection({ expenses, incomeEntries, proje
           </div>
         </article>
 
-        <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <article className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Charts</p>
             <h3 className="mt-2 text-2xl font-semibold text-slate-950">Cost breakdown by category</h3>

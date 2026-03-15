@@ -8,6 +8,7 @@ import FounderDashboardSection from '../components/FounderDashboardSection'
 import IncomeTrackerSection from '../components/IncomeTrackerSection'
 import ProjectManagementSection from '../components/ProjectManagementSection'
 import SettingsSection from '../components/SettingsSection'
+import StrategyMapSection from '../components/StrategyMapSection'
 import TaskBoardSection from '../components/TaskBoardSection'
 import { getExpenses } from '../services/expenses'
 import { getIncome } from '../services/income'
@@ -19,6 +20,7 @@ const sectionLabels = {
   dashboard: 'Dashboard',
   chat: 'Chat',
   projects: 'Projects',
+  strategyMap: 'Strategy Map',
   expenses: 'Expenses',
   income: 'Income',
   tasks: 'Tasks',
@@ -160,9 +162,9 @@ export default function DashboardPage() {
   function renderPlaceholderSection() {
     return (
       <div className="space-y-6">
-        <section className="rounded-[2rem] border border-slate-100 bg-white/90 p-8 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <section className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <p className="text-xs uppercase tracking-[0.22em] text-slate-400">{activeItem}</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-slate-950">{activeItem} workspace</h2>
+          <h2 className="mt-2 text-[2rem] font-semibold tracking-[-0.035em] text-slate-950 sm:text-[2.15rem]">{activeItem} workspace</h2>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-500">
             This section is ready inside the reusable SaaS shell. Add your specific {activeItem.toLowerCase()} tables, charts, workflows, or automation panels here next.
           </p>
@@ -170,7 +172,7 @@ export default function DashboardPage() {
 
         <section className="grid gap-6 md:grid-cols-3">
           {['Summary card', 'Primary workflow', 'Recent items'].map((title) => (
-            <article className="rounded-[1.8rem] border border-slate-100 bg-gradient-to-br from-white via-[#f9fafb] to-[#eef2ff] p-6 shadow-[0_16px_35px_rgba(148,163,184,0.16)]" key={title}>
+            <article className="rounded-[1.5rem] border border-[#e8edf7] bg-[linear-gradient(180deg,#f7f9ff_0%,#ffffff_100%)] p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)]" key={title}>
               <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Block</p>
               <h3 className="mt-3 text-2xl font-semibold text-slate-950">{title}</h3>
               <p className="mt-3 text-sm leading-7 text-slate-500">Use this area to extend the same clean UI system into the {activeItem.toLowerCase()} module.</p>
@@ -203,6 +205,17 @@ export default function DashboardPage() {
 
   if (currentSection === 'projects') {
     content = <ProjectManagementSection onOpenProject={handleOpenProject} projects={projects} setProjects={setProjects} />
+  } else if (currentSection === 'strategyMap') {
+    content = (
+      <StrategyMapSection
+        expenses={expenses}
+        incomeEntries={incomeEntries}
+        onSelectProject={(projectId) => handleOpenProject(projectId, 'strategyMap')}
+        projects={projects}
+        selectedProject={selectedProject}
+        tasks={tasks}
+      />
+    )
   } else if (currentSection === 'chat') {
     content = (
       <ChatInsightsSection
@@ -266,7 +279,7 @@ export default function DashboardPage() {
       taskCount={selectedProjectId ? tasks.filter((t) => t.status !== 'done').length : null}
     >
       {globalError ? (
-        <div className="mb-4 rounded-2xl border border-rose-200 bg-white/90 px-4 py-3 text-sm text-rose-700 shadow-[0_12px_30px_rgba(244,63,94,0.08)]">
+        <div className="mb-4 rounded-2xl border border-rose-200 bg-white/95 px-4 py-3 text-sm text-rose-700 shadow-[0_8px_20px_rgba(244,63,94,0.06)]">
           {globalError}
         </div>
       ) : null}

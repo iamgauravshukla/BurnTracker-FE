@@ -1,9 +1,11 @@
 import axios from 'axios'
+import { API_BASE_URL } from './apiBase'
 
-export const TOKEN_STORAGE_KEY = 'startupTrackerToken'
+export const TOKEN_STORAGE_KEY = 'burnTrackerToken'
+const LEGACY_TOKEN_STORAGE_KEY = 'startupTrackerToken'
 
 const authApi = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -14,11 +16,24 @@ function extractMessage(error) {
 }
 
 export function getStoredToken() {
-  return localStorage.getItem(TOKEN_STORAGE_KEY)
+  const currentToken = localStorage.getItem(TOKEN_STORAGE_KEY)
+
+  if (currentToken) {
+    return currentToken
+  }
+
+  const legacyToken = localStorage.getItem(LEGACY_TOKEN_STORAGE_KEY)
+  if (legacyToken) {
+    localStorage.setItem(TOKEN_STORAGE_KEY, legacyToken)
+    localStorage.removeItem(LEGACY_TOKEN_STORAGE_KEY)
+  }
+
+  return legacyToken
 }
 
 export function clearStoredToken() {
   localStorage.removeItem(TOKEN_STORAGE_KEY)
+  localStorage.removeItem(LEGACY_TOKEN_STORAGE_KEY)
 }
 
 export async function loginUser(credentials) {

@@ -37,7 +37,7 @@ function InsightCard({ children, status, title }) {
   const style = statusStyles[status] || statusStyles.yellow
 
   return (
-    <article className={['rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] ring-1 backdrop-blur-sm', style.ring].join(' ')}>
+    <article className={['rounded-[1.75rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] ring-1 backdrop-blur-sm', style.ring].join(' ')}>
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <span className={['h-3 w-3 rounded-full', style.accent].join(' ')} />
@@ -52,7 +52,7 @@ function InsightCard({ children, status, title }) {
 
 function OverviewMetric({ hint, label, value }) {
   return (
-    <article className="rounded-[1.45rem] border border-white/70 bg-white/90 px-4 py-4 shadow-sm backdrop-blur-sm">
+    <article className="rounded-[1.3rem] border border-[#e8edf7] bg-[linear-gradient(180deg,#f7f9ff_0%,#ffffff_100%)] px-4 py-4 shadow-[0_8px_18px_rgba(148,163,184,0.08)] backdrop-blur-sm">
       <p className="text-xs uppercase tracking-[0.18em] text-slate-400">{label}</p>
       <p className="mt-3 text-2xl font-semibold text-slate-950">{value}</p>
       <p className="mt-2 text-sm text-slate-500">{hint}</p>
@@ -62,12 +62,12 @@ function OverviewMetric({ hint, label, value }) {
 
 function BreakdownList({ emptyMessage, items, title }) {
   return (
-    <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+    <article className="rounded-[1.75rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
       <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Breakdown</p>
       <h3 className="mt-2 text-2xl font-semibold text-slate-950">{title}</h3>
       <div className="mt-5 space-y-3">
         {items.length ? items.map((item) => (
-          <div className="flex items-center justify-between gap-4 rounded-[1.3rem] border border-slate-100 bg-[#f9fafb] px-4 py-4" key={`${title}-${item.label}`}>
+          <div className="flex items-center justify-between gap-4 rounded-[1.2rem] border border-[#e8edf7] bg-[#f7f9ff] px-4 py-4" key={`${title}-${item.label}`}>
             <span className="text-sm font-medium text-slate-900">{item.label}</span>
             <span className="text-sm text-slate-500">{item.value}</span>
           </div>
@@ -127,18 +127,18 @@ export default function AIInsightsSection({ projects, selectedProject }) {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm lg:p-8">
+      <section className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm lg:p-6">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-slate-400">AI Insights</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-slate-950">Weekly founder analysis</h2>
+            <h2 className="mt-2 text-[2rem] font-semibold tracking-[-0.035em] text-slate-950 sm:text-[2.15rem]">Weekly founder analysis</h2>
             <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-500">
               A backend-generated weekly summary covering startup health, burn risk, spending warnings, blocked work, and strategic next steps.
             </p>
             {insights?.summary ? <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600">{insights.summary}</p> : null}
           </div>
 
-          <div className="rounded-[1.5rem] border border-slate-100 bg-gradient-to-r from-[#eef2ff] via-white to-[#fef3c7] px-5 py-4 shadow-sm">
+          <div className="rounded-[1.35rem] border border-[#e8edf7] bg-[linear-gradient(90deg,#f3f6ff_0%,#fff8ef_100%)] px-5 py-4">
             <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Scope</p>
             <p className="mt-2 text-lg font-semibold text-slate-950">{selectedProject?.name || 'No project selected'}</p>
           </div>
@@ -148,7 +148,7 @@ export default function AIInsightsSection({ projects, selectedProject }) {
       {error ? <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{error}</div> : null}
 
       {!selectedProject ? (
-        <section className="rounded-[2rem] border border-slate-100 bg-white/90 p-8 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <section className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <h3 className="text-2xl font-semibold text-slate-950">Project-specific insights only</h3>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-500">
             {projects.length
@@ -161,7 +161,7 @@ export default function AIInsightsSection({ projects, selectedProject }) {
       {selectedProject && isLoading ? (
         <section className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
           {Array.from({ length: 5 }).map((_, index) => (
-            <div className="h-56 animate-pulse rounded-[2rem] border border-slate-100 bg-white/90 shadow-[0_18px_40px_rgba(148,163,184,0.12)]" key={index} />
+            <div className="h-56 animate-pulse rounded-[1.8rem] border border-[#edf0f6] bg-white/95 shadow-[0_10px_24px_rgba(148,163,184,0.08)]" key={index} />
           ))}
         </section>
       ) : selectedProject && insights ? (
@@ -186,7 +186,7 @@ export default function AIInsightsSection({ projects, selectedProject }) {
               {insights.focusAreas?.length ? (
                 <div className="mt-5 flex flex-wrap gap-2">
                   {insights.focusAreas.map((item) => (
-                    <span className="rounded-full border border-slate-200 bg-[#f9fafb] px-3 py-1 text-xs font-medium text-slate-600" key={item}>
+                    <span className="rounded-full border border-[#e8edf7] bg-[#f7f9ff] px-3 py-1 text-xs font-medium text-slate-600" key={item}>
                       {item}
                     </span>
                   ))}
@@ -195,13 +195,13 @@ export default function AIInsightsSection({ projects, selectedProject }) {
             </InsightCard>
 
             <InsightCard status={insights.burnRateAnalysis.status} title={insights.burnRateAnalysis.title}>
-              <p className="text-4xl font-semibold tracking-tight text-slate-950">{insights.burnRateAnalysis.weeklyBurn}</p>
+              <p className="text-[2rem] font-semibold tracking-tight text-slate-950">{insights.burnRateAnalysis.weeklyBurn}</p>
               <p className="mt-3 text-sm leading-7 text-slate-500">{insights.burnRateAnalysis.summary}</p>
               <p className="mt-3 text-sm leading-7 text-slate-600">{insights.burnRateAnalysis.detail}</p>
             </InsightCard>
 
             <InsightCard status={insights.budgetAnalysis.status} title={insights.budgetAnalysis.title}>
-              <p className="text-4xl font-semibold tracking-tight text-slate-950">{insights.budgetAnalysis.primary}</p>
+              <p className="text-[2rem] font-semibold tracking-tight text-slate-950">{insights.budgetAnalysis.primary}</p>
               <p className="mt-3 text-sm leading-7 text-slate-500">{insights.budgetAnalysis.summary}</p>
               <p className="mt-3 text-sm leading-7 text-slate-600">{insights.budgetAnalysis.detail}</p>
             </InsightCard>
@@ -209,7 +209,7 @@ export default function AIInsightsSection({ projects, selectedProject }) {
             <InsightCard status={insights.spendingWarnings.status} title={insights.spendingWarnings.title}>
               <div className="space-y-3">
                 {insights.spendingWarnings.items.map((item) => (
-                  <div className="rounded-[1.3rem] border border-slate-100 bg-[#f9fafb] px-4 py-4 text-sm leading-6 text-slate-700" key={item}>
+                  <div className="rounded-[1.2rem] border border-[#e8edf7] bg-[#f7f9ff] px-4 py-4 text-sm leading-6 text-slate-700" key={item}>
                     {item}
                   </div>
                 ))}
@@ -219,7 +219,7 @@ export default function AIInsightsSection({ projects, selectedProject }) {
 
           <section className="grid gap-6 xl:grid-cols-3">
             <InsightCard status={insights.marketingSignal.status} title={insights.marketingSignal.title}>
-              <p className="text-4xl font-semibold tracking-tight text-slate-950">{insights.marketingSignal.primary}</p>
+              <p className="text-[2rem] font-semibold tracking-tight text-slate-950">{insights.marketingSignal.primary}</p>
               <p className="mt-3 text-sm leading-7 text-slate-500">{insights.marketingSignal.summary}</p>
               <p className="mt-3 text-sm leading-7 text-slate-600">{insights.marketingSignal.detail}</p>
             </InsightCard>
@@ -230,7 +230,7 @@ export default function AIInsightsSection({ projects, selectedProject }) {
             </InsightCard>
 
             <InsightCard status={insights.workRelevance.status} title={insights.workRelevance.title}>
-              <p className="text-4xl font-semibold tracking-tight text-slate-950">{insights.workRelevance.primary}</p>
+              <p className="text-[2rem] font-semibold tracking-tight text-slate-950">{insights.workRelevance.primary}</p>
               <p className="mt-3 text-sm leading-7 text-slate-500">{insights.workRelevance.summary}</p>
               <p className="mt-3 text-sm leading-7 text-slate-600">{insights.workRelevance.detail}</p>
             </InsightCard>
@@ -240,7 +240,7 @@ export default function AIInsightsSection({ projects, selectedProject }) {
             <InsightCard status={insights.stuckTasks.status} title={insights.stuckTasks.title}>
               <div className="space-y-3">
                 {insights.stuckTasks.items.map((item) => (
-                  <div className="rounded-[1.3rem] border border-slate-100 bg-[#f9fafb] px-4 py-4 text-sm leading-6 text-slate-700" key={item}>
+                  <div className="rounded-[1.2rem] border border-[#e8edf7] bg-[#f7f9ff] px-4 py-4 text-sm leading-6 text-slate-700" key={item}>
                     {item}
                   </div>
                 ))}
@@ -250,7 +250,7 @@ export default function AIInsightsSection({ projects, selectedProject }) {
             <InsightCard status={insights.strategicInsights.status} title={insights.strategicInsights.title}>
               <div className="space-y-3">
                 {insights.strategicInsights.items.map((item) => (
-                  <div className="rounded-[1.3rem] border border-slate-100 bg-[#f9fafb] px-4 py-4 text-sm leading-6 text-slate-700" key={item}>
+                  <div className="rounded-[1.2rem] border border-[#e8edf7] bg-[#f7f9ff] px-4 py-4 text-sm leading-6 text-slate-700" key={item}>
                     {item}
                   </div>
                 ))}
@@ -284,13 +284,13 @@ export default function AIInsightsSection({ projects, selectedProject }) {
           {(insights.breakdowns.largestExpense || insights.breakdowns.largestIncome) ? (
             <section className="grid gap-4 md:grid-cols-2">
               {insights.breakdowns.largestExpense ? (
-                <article className="rounded-[1.7rem] border border-slate-100 bg-white/90 p-5 shadow-[0_16px_35px_rgba(148,163,184,0.16)] backdrop-blur-sm">
+                <article className="rounded-[1.5rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
                   <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Largest expense</p>
                   <p className="mt-3 text-lg font-semibold text-slate-950">{insights.breakdowns.largestExpense}</p>
                 </article>
               ) : null}
               {insights.breakdowns.largestIncome ? (
-                <article className="rounded-[1.7rem] border border-slate-100 bg-white/90 p-5 shadow-[0_16px_35px_rgba(148,163,184,0.16)] backdrop-blur-sm">
+                <article className="rounded-[1.5rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
                   <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Largest income</p>
                   <p className="mt-3 text-lg font-semibold text-slate-950">{insights.breakdowns.largestIncome}</p>
                 </article>

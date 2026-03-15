@@ -2,6 +2,7 @@ const navigationItems = [
   'Dashboard',
   'Chat',
   'Projects',
+  'Strategy Map',
   'Expenses',
   'Income',
   'Tasks',
@@ -71,6 +72,17 @@ function SparkleIcon({ className }) {
   )
 }
 
+function MindMapIcon({ className }) {
+  return (
+    <svg aria-hidden="true" className={className} fill="none" viewBox="0 0 24 24">
+      <circle cx="12" cy="5.5" r="2.5" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="5.5" cy="18.5" r="2.5" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="18.5" cy="18.5" r="2.5" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M10.4 7.4 7.1 16M13.6 7.4l3.3 8.6M8 18.5h8" stroke="currentColor" strokeLinecap="round" strokeWidth="1.6" />
+    </svg>
+  )
+}
+
 function ChatIcon({ className }) {
   return (
     <svg aria-hidden="true" className={className} fill="none" viewBox="0 0 24 24">
@@ -108,6 +120,7 @@ const icons = {
   Dashboard: GridIcon,
   Chat: ChatIcon,
   Projects: FolderIcon,
+  'Strategy Map': MindMapIcon,
   Expenses: WalletIcon,
   Income: ArrowUpIcon,
   Tasks: CheckIcon,
@@ -121,26 +134,26 @@ function SidebarItem({ isActive, isCollapsed, item, onClick, taskCount }) {
   return (
     <button
       className={[
-        'group flex w-full items-center gap-3 rounded-[1.1rem] px-3.5 py-3 text-left text-sm transition duration-200',
+        'group flex w-full items-center gap-2.5 rounded-[0.9rem] px-3 py-2.5 text-left text-[13px] transition duration-200',
         isActive
-          ? 'bg-gradient-to-r from-white to-[#f5f3ff] text-slate-900 shadow-[0_18px_40px_rgba(15,23,42,0.10)]'
-          : 'text-slate-500 hover:bg-white/70 hover:text-slate-900',
+          ? 'border border-[#ece8ff] bg-[linear-gradient(90deg,#f3f6ff_0%,#faf7ff_100%)] text-slate-900 shadow-[0_8px_18px_rgba(148,163,184,0.14)]'
+          : 'text-slate-500 hover:bg-[#f7f8fc] hover:text-slate-900',
         isCollapsed ? 'justify-center' : '',
       ].join(' ')}
       onClick={onClick}
       type="button"
     >
       <span className={[
-        'flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition',
+        'flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.85rem] transition',
         isActive
-          ? 'bg-gradient-to-tr from-[#fef3c7] via-[#e0f2fe] to-[#f5f3ff] text-slate-900'
-          : 'bg-[#f1f5f9] text-slate-500 group-hover:bg-[#e5e7eb] group-hover:text-slate-900',
+          ? 'bg-[linear-gradient(135deg,#dfeaff_0%,#efe6ff_52%,#ffe7df_100%)] text-slate-900'
+          : 'bg-[#f3f5f9] text-slate-500 group-hover:bg-[#ebeef5] group-hover:text-slate-900',
       ].join(' ')}>
-        <Icon className={['h-[18px] w-[18px] shrink-0', iconClass(isActive)].join(' ')} />
+        <Icon className={['h-4 w-4 shrink-0', iconClass(isActive)].join(' ')} />
       </span>
       <span className={isCollapsed ? 'hidden' : 'inline'}>{item}</span>
       {!isCollapsed && item === 'Tasks' && taskCount != null ? (
-        <span className={['ml-auto rounded-full px-2 py-0.5 text-[11px]', isActive ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-600'].join(' ')}>
+        <span className={['ml-auto rounded-full px-2 py-0.5 text-[11px]', isActive ? 'bg-slate-900 text-white' : 'bg-[#eef2ff] text-slate-600'].join(' ')}>
           {taskCount}
         </span>
       ) : null}
@@ -151,20 +164,20 @@ function SidebarItem({ isActive, isCollapsed, item, onClick, taskCount }) {
 function SidebarContent({ activeItem, isCollapsed, onItemSelect, onToggleMobile, taskCount }) {
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center justify-between border-b border-slate-100 px-5 py-5">
+      <div className="flex items-center justify-between border-b border-slate-100/80 px-4 py-4 lg:px-5 lg:py-5">
         <div className="flex items-center gap-3 overflow-hidden">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[1.35rem] bg-[linear-gradient(135deg,#e0f2fe_0%,#f5d0fe_45%,#fee2e2_100%)] text-sm font-semibold text-slate-900 shadow-[0_18px_40px_rgba(148,163,184,0.45)]">
-            SX
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[1rem] border border-[#ebe8ff] bg-[linear-gradient(135deg,#6c4cff_0%,#7b61ff_100%)] text-sm font-semibold text-white lg:h-12 lg:w-12 lg:rounded-[1.1rem]">
+            BT
           </div>
           <div className={isCollapsed ? 'hidden' : 'block'}>
-            <p className="text-sm font-semibold text-slate-900">StartupTracker</p>
-            <p className="mt-1 text-xs uppercase tracking-[0.22em] text-slate-400">Founder Ops</p>
+            <p className="text-sm font-semibold text-slate-900">BurnTracker</p>
+            <p className="mt-1 text-xs uppercase tracking-[0.22em] text-slate-400">Founder ops</p>
           </div>
         </div>
 
         <button
           aria-label="Close sidebar"
-          className="rounded-xl border border-slate-200 bg-white/80 p-2 text-slate-500 shadow-sm transition hover:bg-white lg:hidden"
+          className="rounded-xl border border-slate-200 bg-white p-2 text-slate-500 transition hover:bg-slate-50 lg:hidden"
           onClick={onToggleMobile}
           type="button"
         >
@@ -172,11 +185,7 @@ function SidebarContent({ activeItem, isCollapsed, onItemSelect, onToggleMobile,
         </button>
       </div>
 
-      <div className={isCollapsed ? 'hidden' : 'px-5 pt-6 text-[11px] uppercase tracking-[0.24em] text-slate-400'}>
-        Navigation
-      </div>
-
-      <nav className="flex-1 space-y-2 px-4 py-4">
+      <nav className="flex-1 space-y-1.5 px-3 py-4 lg:px-4 lg:py-5">
         {navigationItems.map((item) => (
           <SidebarItem
             isActive={activeItem === item}
@@ -189,8 +198,8 @@ function SidebarContent({ activeItem, isCollapsed, onItemSelect, onToggleMobile,
         ))}
       </nav>
 
-      <div className="border-t border-slate-100 px-4 py-4">
-        <div className={['rounded-[1.6rem] border border-slate-100 bg-gradient-to-br from-white via-[#f9fafb] to-[#e0f2fe] p-4 shadow-sm', isCollapsed ? 'text-center' : ''].join(' ')}>
+      <div className="border-t border-slate-100 px-3 py-3 lg:px-4 lg:py-4">
+        <div className={['rounded-[1.45rem] border border-[#eef1f7] bg-[linear-gradient(180deg,#fcfdff_0%,#f4f7ff_100%)] p-4', isCollapsed ? 'text-center' : ''].join(' ')}>
           <p className={isCollapsed ? 'hidden' : 'text-xs uppercase tracking-[0.22em] text-slate-400'}>Weekly health</p>
           <p className="mt-2 text-2xl font-semibold text-slate-900">92%</p>
           <p className={isCollapsed ? 'hidden' : 'mt-2 text-xs leading-5 text-slate-500'}>Tasks, cash, and reporting are aligned with your current operating plan.</p>
@@ -205,7 +214,7 @@ export default function Sidebar({ activeItem, isCollapsed, isMobileOpen, onItemS
     <>
       <button
         aria-label="Open sidebar"
-        className="fixed left-5 top-5 z-40 rounded-2xl border border-slate-200 bg-white/90 p-3 text-slate-700 shadow-[0_16px_32px_rgba(15,23,42,0.16)] backdrop-blur lg:hidden"
+        className="fixed left-3 top-3 z-40 rounded-[1.1rem] border border-slate-200 bg-white p-2.5 text-slate-700 shadow-[0_10px_24px_rgba(148,163,184,0.18)] backdrop-blur lg:hidden"
         onClick={onToggleMobile}
         type="button"
       >
@@ -223,9 +232,9 @@ export default function Sidebar({ activeItem, isCollapsed, isMobileOpen, onItemS
 
       <aside
         className={[
-          'fixed inset-y-0 left-0 z-40 border-r border-slate-100 bg-gradient-to-b from-white via-[#f9fafb] to-[#eff6ff] shadow-[0_20px_60px_rgba(148,163,184,0.35)] transition-all duration-300',
+          'fixed inset-y-0 left-0 z-40 border-r border-slate-100 bg-[linear-gradient(180deg,#ffffff_0%,#fbfcff_55%,#f6f8ff_100%)] shadow-[0_16px_40px_rgba(148,163,184,0.18)] transition-all duration-300',
           isCollapsed ? 'lg:w-28' : 'lg:w-80',
-          isMobileOpen ? 'translate-x-0 w-72' : '-translate-x-full w-72 lg:translate-x-0',
+          isMobileOpen ? 'translate-x-0 w-64 max-w-[85vw]' : '-translate-x-full w-64 max-w-[85vw] lg:translate-x-0',
         ].join(' ')}
       >
         <SidebarContent
@@ -238,7 +247,7 @@ export default function Sidebar({ activeItem, isCollapsed, isMobileOpen, onItemS
 
         <button
           aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          className="absolute -right-4 top-8 hidden h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-[0_12px_30px_rgba(148,163,184,0.35)] transition hover:bg-slate-50 lg:flex"
+          className="absolute -right-4 top-8 hidden h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-[0_8px_18px_rgba(148,163,184,0.18)] transition hover:bg-slate-50 lg:flex"
           onClick={onToggleCollapse}
           type="button"
         >

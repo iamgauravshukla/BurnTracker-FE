@@ -156,9 +156,9 @@ export default function ExpenseTrackerSection({ expenses, isLoadingData, onSelec
   if (!selectedProject) {
     return (
       <div className="space-y-6">
-        <section className="rounded-[2rem] border border-slate-100 bg-white/90 p-8 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <section className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-6 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Expenses</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-slate-950">Select a startup first</h2>
+          <h2 className="mt-2 text-[2rem] font-semibold tracking-[-0.035em] text-slate-950 sm:text-[2.15rem]">Select a startup first</h2>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-500">
             Expenses are tracked per startup. Open a project to add, edit, and analyze spending for that specific company.
           </p>
@@ -168,7 +168,7 @@ export default function ExpenseTrackerSection({ expenses, isLoadingData, onSelec
           {projects.length ? (
             projects.map((project) => (
               <button
-                className="rounded-[1.8rem] border border-slate-100 bg-white/90 p-6 text-left shadow-[0_16px_35px_rgba(148,163,184,0.16)] transition hover:border-slate-200 hover:bg-white"
+                className="rounded-[1.5rem] border border-[#e8edf7] bg-[linear-gradient(180deg,#f7f9ff_0%,#ffffff_100%)] p-6 text-left shadow-[0_10px_24px_rgba(148,163,184,0.10)] transition hover:border-[#dfe8ff] hover:bg-white"
                 key={project.id}
                 onClick={() => onSelectProject(project.id)}
                 type="button"
@@ -179,7 +179,7 @@ export default function ExpenseTrackerSection({ expenses, isLoadingData, onSelec
               </button>
             ))
           ) : (
-            <div className="rounded-[1.8rem] border border-dashed border-slate-200 bg-white/90 p-8 text-sm text-slate-500 shadow-[0_16px_35px_rgba(148,163,184,0.12)]">
+            <div className="rounded-[1.5rem] border border-dashed border-[#dfe8ff] bg-white/95 p-8 text-sm text-slate-500 shadow-[0_10px_24px_rgba(148,163,184,0.08)]">
               Create a project in the Projects section before tracking expenses.
             </div>
           )}
@@ -191,27 +191,27 @@ export default function ExpenseTrackerSection({ expenses, isLoadingData, onSelec
   return (
     <div className="space-y-6">
       <section className="grid gap-4 md:grid-cols-3">
-        <article className="rounded-[1.7rem] border border-slate-100 bg-gradient-to-br from-white via-[#f9fafb] to-[#eef2ff] p-5 shadow-[0_16px_35px_rgba(148,163,184,0.16)]">
+        <article className="rounded-[1.45rem] border border-[#dfe8ff] bg-[linear-gradient(180deg,#edf4ff_0%,#f9fbff_100%)] p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)]">
           <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Selected startup</p>
           <h2 className="mt-3 text-2xl font-semibold text-slate-950">{selectedProject.name}</h2>
           <p className="mt-2 text-sm leading-6 text-slate-500">{selectedProject.description}</p>
         </article>
 
-        <article className="rounded-[1.7rem] border border-slate-100 bg-gradient-to-br from-white via-[#f9fafb] to-[#fffbeb] p-5 shadow-[0_16px_35px_rgba(148,163,184,0.16)]">
+        <article className="rounded-[1.45rem] border border-[#ffe7dc] bg-[linear-gradient(180deg,#fff3ec_0%,#fffaf7_100%)] p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)]">
           <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Logged expenses</p>
-          <p className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">{projectExpenses.length}</p>
+          <p className="mt-2 text-[1.7rem] font-semibold tracking-tight text-slate-950">{projectExpenses.length}</p>
           <p className="mt-2 text-sm text-slate-500">Total expense entries for this startup.</p>
         </article>
 
-        <article className="rounded-[1.7rem] border border-slate-100 bg-gradient-to-br from-white via-[#f9fafb] to-[#ecfeff] p-5 shadow-[0_16px_35px_rgba(148,163,184,0.16)]">
+        <article className="rounded-[1.45rem] border border-[#e8ddff] bg-[linear-gradient(180deg,#f4efff_0%,#fbf9ff_100%)] p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)]">
           <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Current month spend</p>
-          <p className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">{formatExpenseAmount(currentMonthSpend, currency)}</p>
+          <p className="mt-2 text-[1.7rem] font-semibold tracking-tight text-slate-950">{formatExpenseAmount(currentMonthSpend, currency)}</p>
           <p className="mt-2 text-sm text-slate-500">Tracked expenses dated in the current month.</p>
         </article>
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
-        <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <article className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-slate-400">{editingExpenseId ? 'Edit expense' : 'Add expense'}</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-slate-950">
@@ -331,11 +331,11 @@ export default function ExpenseTrackerSection({ expenses, isLoadingData, onSelec
           </form> : <div className="mt-8 rounded-[1.5rem] border border-dashed border-slate-200 bg-[#fafafa] px-5 py-8 text-sm text-slate-500">This project is read-only for your account. Ask the owner to upgrade your role to editor if you need to log or update expenses.</div>}
         </article>
 
-        <article className="rounded-[2rem] border border-slate-100 bg-white/90 p-6 shadow-[0_18px_40px_rgba(148,163,184,0.18)] backdrop-blur-sm">
+        <article className="rounded-[1.7rem] border border-[#edf0f6] bg-white/95 p-5 shadow-[0_10px_24px_rgba(148,163,184,0.10)] backdrop-blur-sm">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-slate-400">Expense table</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-slate-950">Expenses</h2>
+              <h2 className="mt-2 text-[1.7rem] font-semibold tracking-[-0.03em] text-slate-950">Expenses</h2>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3">
@@ -386,10 +386,10 @@ export default function ExpenseTrackerSection({ expenses, isLoadingData, onSelec
             </div>
           </div>
 
-          <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-slate-200">
+          <div className="mt-6 overflow-hidden rounded-[1.35rem] border border-[#e8edf7]">
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-slate-200">
-                <thead className="bg-[#fafafa]">
+              <table className="min-w-full divide-y divide-[#eef1f7]">
+                <thead className="bg-[#f7f9ff]">
                   <tr>
                     {['Date', 'Vendor', 'Category', 'Department', 'Amount', ...(canManageExpenses ? ['Actions'] : [])].map((column) => (
                       <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-[0.18em] text-slate-400" key={column} scope="col">
@@ -398,7 +398,7 @@ export default function ExpenseTrackerSection({ expenses, isLoadingData, onSelec
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200 bg-white">
+                <tbody className="divide-y divide-[#eef1f7] bg-white">
                   {filteredExpenses.length ? (
                     filteredExpenses.map((expense) => (
                       <tr key={expense.id}>
